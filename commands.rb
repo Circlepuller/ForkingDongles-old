@@ -20,9 +20,7 @@ class Hash
     if result.is_a? Hash
       result = result.dup.with_sym_keys
 
-      result.each do |k, v|
-        result[k] = convert_to_ostruct_recursive v, options unless options.has_key? :exclude and options[:exclude].try :include?, k
-      end
+      result.each { |k, v| result[k] = convert_to_ostruct_recursive v, options unless options.has_key? :exclude and options[:exclude].try :include?, k }
 
       result = OpenStruct.new result
     elsif result.is_a? Array
