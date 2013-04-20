@@ -1,4 +1,4 @@
-ForkingDongles
+==ForkingDongles==
 An asynchronous, pluggable, evented IRC bot framework written using EventMachine and Ruby.
 
 TODO
