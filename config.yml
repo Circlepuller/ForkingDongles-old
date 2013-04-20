@@ -1,0 +1,9 @@
+server: irc.example.com
+port: 6667
+ssl: false
+plugin:
+  core:
+    nickname: ForkingDongles
+    username: ForkingD
+    channels: ['#example']
+    quit_message: ForkingDongles has left the building.
