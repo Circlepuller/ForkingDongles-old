@@ -20,8 +20,13 @@ require_relative 'keyboard'
 require_relative 'plugin'
 
 EventMachine.run do
-  Signal.trap 'INT' { EventMachine::Timer.new(5) { EventMachine.stop }}
-  Signal.trap 'TERM' { EventMachine::Timer.new(5) { EventMachine.stop }}
+  Signal.trap 'INT' do
+    EventMachine::Timer.new(5) { EventMachine.stop }
+  end
+
+  Signal.trap 'TERM' do
+    EventMachine::Timer.new(5) { EventMachine.stop }
+  end
 
   config = YAML.load_file 'config.yml'
   $bot = EventMachine.connect config['server'], config['port'], ForkingDongles::Bot, config

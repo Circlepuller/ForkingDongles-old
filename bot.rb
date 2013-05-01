@@ -167,6 +167,8 @@ module ForkingDongles
       @connected = false
       @logger.info 'Quitting...'
       @logger.close
+
+      EventMachine.stop
     end
   end
 end
