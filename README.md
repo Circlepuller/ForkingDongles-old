@@ -9,17 +9,20 @@ To-Do
 * ''Modular plugins'': Plugins that are actually modular, getting rid of several issues:
 
 ```ruby
-class ForkingDongles::Plugin::H < ForkingDongles::Plugin::Base
+class ForkingDongles::Plugin::Counter < ForkingDongles::Plugin::Base
   def initialize bot
     super
     
-    privmsg? /^h+$/, &h
+    @bot.help['*count'] = '*count - Counts the amount the command has been called.'
+    @count = 0
+    
+    privmsg? /^\*count$/, &count
   end
   
-  def h matches, source, channel, line
+  def count matches, source, channel, line
     username, ident, hostname = source.to_user
     
-    privmsg! [channel.is_channel? ? channel : username], 'h'
+    privmsg! [channel.is_channel? ? channel : username], "Counted #{@count += 1} times so far"
   end
 end
 ```
