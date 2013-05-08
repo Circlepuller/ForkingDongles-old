@@ -5,10 +5,24 @@ EventMachine and Ruby.
 
 To-Do
 -----
-* Docs that actually look nice
-* Plugin guide
-* Better code
-* Etc.
+* ''Proper documentation'': Documentation that is formatted and understandable.
+* ''Modular plugins'': Plugins that are actually modular, getting rid of several issues:
+
+```ruby
+class ForkingDongles::Plugin::H < ForkingDongles::Plugin::Base
+  def initialize bot
+    super
+    
+    privmsg? /^h+$/, &h
+  end
+  
+  def h matches, source, channel, line
+    username, ident, hostname = source.to_user
+    
+    privmsg! [channel.is_channel? ? channel : username], 'h'
+  end
+end
+```
 
 Usage
 -----
