@@ -5,8 +5,8 @@ EventMachine and Ruby.
 
 To-Do
 -----
-* ''Proper documentation'': Documentation that is formatted and understandable.
-* ''Modular plugins'': Plugins that are actually modular, getting rid of several issues:
+* <b>Proper documentation</b>: Documentation that is formatted and understandable.
+* <b>Modular plugins</b>: Plugins that are actually modular, getting rid of several issues:
 
 ```ruby
 class ForkingDongles::Plugin::Counter < ForkingDongles::Plugin::Base
