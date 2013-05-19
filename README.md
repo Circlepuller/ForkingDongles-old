@@ -14,9 +14,15 @@ class ForkingDongles::Plugin::Counter < ForkingDongles::Plugin::Base
     super
     
     @bot.help['*count'] = '*count - Counts the amount the command has been called.'
+    @bot.help['*uncount'] = '*uncount - Does the same as *count, but decrements.'
     @count = 0
     
-    privmsg? /^\*count$/, &count
+    privmsg? /^\*count$/, &method(:count)
+    privmsg? /^\*uncount$/ do |matches, source, channel, line|
+      username, ident, hostname = source.to_user
+      
+      privmsg! [channel.is_channel? ? channel : username], "Counted #{@count -= 1} times so far"
+    end
   end
   
   def count matches, source, channel, line
